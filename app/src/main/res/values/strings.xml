@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">NaturaFirebase</string>
+    <string name="main_menu_signout">Sign out</string>
+</resources>
