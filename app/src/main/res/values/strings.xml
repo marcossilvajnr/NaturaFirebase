@@ -1,4 +1,29 @@
 <resources>
     <string name="app_name">NaturaFirebase</string>
-    <string name="main_menu_signout">Sign out</string>
+
+    <!-- Menu item description -->
+    <string name="menu_main_signout">Logoff</string>
+    <string name="menu_photo_register_clear">Limpar</string>
+    <string name="menu_photo_register_ok">Confirmar</string>
+    <string name="progress_dialog_loading">Carregando…</string>
+    <string name="progress_dialog_checking_accounts" >Verificando as contas existentes</string>
+
+    <!-- Firebase UI -->
+    <string name="sign_in_with_google" translation_description="Sign in button text">Login com Google</string>
+    <string name="sign_in_with_email" translation_description="Sign in button text">Login com e-mail</string>
+    <string name="title_register_email" >Registro</string>
+    <string name="sign_in_default">Login</string>
+    <string name="general_error">Ocorreu um erro</string>
+    <string name="email_hint" >E-mail</string>
+    <string name="name_hint" >Nome e sobrenome</string>
+    <string name="password_hint" >Senha</string>
+    <string name="next_default" >Próximo</string>
+    <string name="button_text_save" >Confirmar</string>
+    <string name="missing_email_address" >Informe um e-mail para continuar</string>
+    <string name="required_field">Informe um valor para continuar</string>
+    <plurals name="error_weak_password" translation_description="Inline error for weak password">
+        <item quantity="one" translation_description="Inline error for weak password">A senha não é suficientemente forte. Use pelo menos %1$d caractere e uma mistura de letras e números</item>
+        <item quantity="other" translation_description="Inline error for weak password">A senha não é suficientemente forte. Use pelo menos %1$d caracteres e uma mistura de letras e números</item>
+    </plurals>
+    <string name="progress_dialog_signing_up" translation_description="Dialog text while waiting for server's signup response">Registrando…</string>
 </resources>

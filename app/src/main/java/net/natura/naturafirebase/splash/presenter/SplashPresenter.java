@@ -1,9 +1,10 @@
 package net.natura.naturafirebase.splash.presenter;
 
-import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import net.natura.naturafirebase.base.presenter.BasePresenter;
+import net.natura.naturafirebase.base.services.FirebaseAuthService;
 import net.natura.naturafirebase.splash.SplashContract;
 
 /**
@@ -14,16 +15,20 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
 
     @Override
     public void verifySignin() {
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
-            view.openMain();
-        } else {
-            view.openLogin();
+        if (view != null) {
+            final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+            if (firebaseUser != null) {
+                FirebaseAuthService.getInstance().setFirebaseUser(firebaseUser);
+
+                if (firebaseUser.getPhotoUrl() != null && !firebaseUser.getPhotoUrl().toString().isEmpty()) {
+                    view.openMain();
+                } else {
+                    view.openPhotoRegister();
+                }
+            } else {
+                view.openLogin();
+            }
         }
-    }
-
-    @Override
-    public void parseAndValidateSignin(IdpResponse idpResponse) {
-
     }
 }

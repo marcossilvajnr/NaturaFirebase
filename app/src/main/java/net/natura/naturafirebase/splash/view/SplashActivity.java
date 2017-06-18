@@ -10,6 +10,7 @@ import com.firebase.ui.auth.ResultCodes;
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
 import net.natura.naturafirebase.main.view.MainActivity;
+import net.natura.naturafirebase.photoregister.view.PhotoRegisterActivity;
 import net.natura.naturafirebase.splash.SplashContract;
 import net.natura.naturafirebase.splash.presenter.SplashPresenter;
 
@@ -33,9 +34,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        setupView();
-
         splashPresenter = new SplashPresenter();
+        setupView();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == ResultCodes.OK) {
-                openMain();
+                splashPresenter.verifySignin();
             } else {
                 finish();
             }
@@ -82,6 +82,11 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Override
     public void openMain() {
         openActivity(MainActivity.newInstance(SplashActivity.this));
+    }
+
+    @Override
+    public void openPhotoRegister() {
+        openActivity(PhotoRegisterActivity.newInstance(SplashActivity.this));
     }
 
     private void setupView() {
