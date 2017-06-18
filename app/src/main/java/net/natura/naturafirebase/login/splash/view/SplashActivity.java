@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.splash.view;
+package net.natura.naturafirebase.login.splash.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,10 @@ import com.firebase.ui.auth.ResultCodes;
 
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
-import net.natura.naturafirebase.main.view.MainActivity;
-import net.natura.naturafirebase.photoregister.view.PhotoRegisterActivity;
-import net.natura.naturafirebase.splash.SplashContract;
-import net.natura.naturafirebase.splash.presenter.SplashPresenter;
+import net.natura.naturafirebase.main.base.view.MainActivity;
+import net.natura.naturafirebase.login.photoregister.view.PhotoRegisterActivity;
+import net.natura.naturafirebase.login.splash.SplashContract;
+import net.natura.naturafirebase.login.splash.presenter.SplashPresenter;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;

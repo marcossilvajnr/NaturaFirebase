@@ -15,7 +15,7 @@
         android:supportsRtl="true">
 
         <activity
-            android:name=".splash.view.SplashActivity"
+            android:name=".login.splash.view.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
@@ -26,17 +26,17 @@
         </activity>
 
         <activity
-            android:name=".main.view.MainActivity"
+            android:name=".main.base.view.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
-            android:name=".photoregister.view.PhotoRegisterActivity"
+            android:name=".login.photoregister.view.PhotoRegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        
+
         <service android:name=".base.services.FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

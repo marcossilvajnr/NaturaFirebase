@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.photoregister;
+package net.natura.naturafirebase.login.photoregister;
 
 import android.graphics.Bitmap;
 

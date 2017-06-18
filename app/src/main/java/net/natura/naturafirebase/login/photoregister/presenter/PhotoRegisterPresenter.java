@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.photoregister.presenter;
+package net.natura.naturafirebase.login.photoregister.presenter;
 
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -18,7 +18,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import net.natura.naturafirebase.base.presenter.BasePresenter;
-import net.natura.naturafirebase.photoregister.PhotoRegisterContract;
+import net.natura.naturafirebase.login.photoregister.PhotoRegisterContract;
 
 import java.io.ByteArrayOutputStream;
 

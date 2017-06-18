@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.splash;
+package net.natura.naturafirebase.login.splash;
 
 import net.natura.naturafirebase.base.view.BaseView;
 

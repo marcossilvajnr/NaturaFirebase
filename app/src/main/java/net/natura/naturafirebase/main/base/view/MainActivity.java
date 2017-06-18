@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,8 +22,12 @@ import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
 import net.natura.naturafirebase.main.MainContract;
 import net.natura.naturafirebase.main.presenter.MainPresenter;
+import net.natura.naturafirebase.storage.view.StorageFragment;
 
 import java.util.Arrays;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by marcos on 04/06/17.
@@ -29,6 +36,11 @@ import java.util.Arrays;
 public class MainActivity extends BaseActivity implements MainContract.View {
     private static final int RC_SIGN_IN = 222;
     private MainPresenter mainPresenter;
+    private MainViewPagerAdapter mainViewPagerAdapter;
+
+    @BindView(R.id.mainToolbar) Toolbar mainToolbar;
+    @BindView(R.id.mainTabLayout) TabLayout mainTabLayout;
+    @BindView(R.id.mainViewPager) ViewPager mainViewPager;
 
     public static Intent newInstance(Context context){
         Intent intent = new Intent(context, MainActivity.class);
@@ -39,8 +51,15 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        ButterKnife.bind(this);
+        setSupportActionBar(mainToolbar);
         mainPresenter = new MainPresenter();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setupViewPager();
     }
 
     @Override
@@ -98,9 +117,17 @@ public class MainActivity extends BaseActivity implements MainContract.View {
         startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
             .setTheme(R.style.NaturaAuthTheme)
             .setLogo(R.drawable.ic_logo_natura_orange)
+            .setIsSmartLockEnabled(false)
             .setProviders(Arrays.asList(
                     new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
                     new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
             )).build(), RC_SIGN_IN);
+    }
+
+    private void setupViewPager(){
+        mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
+        mainViewPagerAdapter.addFragment(StorageFragment.newinstance(), "Storage");
+        mainViewPager.setAdapter(mainViewPagerAdapter);
+        mainTabLayout.setupWithViewPager(mainViewPager);
     }
 }

@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.photoregister.view;
+package net.natura.naturafirebase.login.photoregister.view;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -25,9 +25,9 @@ import com.google.firebase.auth.FirebaseUser;
 
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
-import net.natura.naturafirebase.main.view.MainActivity;
-import net.natura.naturafirebase.photoregister.PhotoRegisterContract;
-import net.natura.naturafirebase.photoregister.presenter.PhotoRegisterPresenter;
+import net.natura.naturafirebase.main.base.view.MainActivity;
+import net.natura.naturafirebase.login.photoregister.PhotoRegisterContract;
+import net.natura.naturafirebase.login.photoregister.presenter.PhotoRegisterPresenter;
 
 import java.io.InputStream;
 
