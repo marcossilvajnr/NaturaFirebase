@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.main;
+package net.natura.naturafirebase.main.base;
 
 import net.natura.naturafirebase.base.view.BaseView;
 

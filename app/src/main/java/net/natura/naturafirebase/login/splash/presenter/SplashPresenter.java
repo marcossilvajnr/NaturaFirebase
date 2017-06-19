@@ -1,11 +1,11 @@
-package net.natura.naturafirebase.splash.presenter;
+package net.natura.naturafirebase.login.splash.presenter;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import net.natura.naturafirebase.base.presenter.BasePresenter;
 import net.natura.naturafirebase.base.services.FirebaseAuthService;
-import net.natura.naturafirebase.splash.SplashContract;
+import net.natura.naturafirebase.login.splash.SplashContract;
 
 /**
  * Created by marcos on 03/06/17.

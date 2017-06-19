@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.main.view;
+package net.natura.naturafirebase.main.base.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,9 +20,10 @@ import com.google.android.gms.tasks.Task;
 
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
-import net.natura.naturafirebase.main.MainContract;
-import net.natura.naturafirebase.main.presenter.MainPresenter;
-import net.natura.naturafirebase.storage.view.StorageFragment;
+import net.natura.naturafirebase.main.base.MainContract;
+import net.natura.naturafirebase.main.base.presenter.MainPresenter;
+import net.natura.naturafirebase.main.chat.view.ChatFragment;
+import net.natura.naturafirebase.main.notifications.view.NotificationsFragment;
 
 import java.util.Arrays;
 
@@ -126,7 +127,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
 
     private void setupViewPager(){
         mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());
-        mainViewPagerAdapter.addFragment(StorageFragment.newinstance(), "Storage");
+        mainViewPagerAdapter.addFragment(ChatFragment.newinstance(), "Chat");
+        mainViewPagerAdapter.addFragment(NotificationsFragment.newinstance(), "Notificações");
         mainViewPager.setAdapter(mainViewPagerAdapter);
         mainTabLayout.setupWithViewPager(mainViewPager);
     }

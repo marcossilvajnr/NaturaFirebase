@@ -1,7 +1,7 @@
-package net.natura.naturafirebase.main.presenter;
+package net.natura.naturafirebase.main.base.presenter;
 
 import net.natura.naturafirebase.base.presenter.BasePresenter;
-import net.natura.naturafirebase.main.MainContract;
+import net.natura.naturafirebase.main.base.MainContract;
 
 /**
  * Created by marcos on 04/06/17.
