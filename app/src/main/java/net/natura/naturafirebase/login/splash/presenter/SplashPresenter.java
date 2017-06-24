@@ -14,7 +14,7 @@ import net.natura.naturafirebase.login.splash.SplashContract;
 public class SplashPresenter extends BasePresenter<SplashContract.View> implements SplashContract.Presenter {
 
     @Override
-    public void verifySignin() {
+    public void verifySignin(FirebaseUser firebaseUser) {
         if (view != null) {
             final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 

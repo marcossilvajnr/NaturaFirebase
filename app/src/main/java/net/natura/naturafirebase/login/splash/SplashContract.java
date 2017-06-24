@@ -1,5 +1,7 @@
 package net.natura.naturafirebase.login.splash;
 
+import com.google.firebase.auth.FirebaseUser;
+
 import net.natura.naturafirebase.base.view.BaseView;
 
 /**
@@ -9,7 +11,7 @@ import net.natura.naturafirebase.base.view.BaseView;
 public interface SplashContract {
 
     interface Presenter {
-        void verifySignin();
+        void verifySignin(FirebaseUser firebaseUser);
     }
 
     interface View extends BaseView {

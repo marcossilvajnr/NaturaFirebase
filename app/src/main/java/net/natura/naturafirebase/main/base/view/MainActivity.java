@@ -17,9 +17,11 @@ import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.ResultCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
+import net.natura.naturafirebase.login.splash.view.SplashActivity;
 import net.natura.naturafirebase.main.base.MainContract;
 import net.natura.naturafirebase.main.base.presenter.MainPresenter;
 import net.natura.naturafirebase.main.chat.view.ChatFragment;
@@ -89,7 +91,8 @@ public class MainActivity extends BaseActivity implements MainContract.View {
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        openLogin();
+                        FirebaseAuth.getInstance().signOut();
+                        openSplash();
                     }
                 });
         }
@@ -114,15 +117,10 @@ public class MainActivity extends BaseActivity implements MainContract.View {
     }
 
     @Override
-    public void openLogin() {
-        startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder()
-            .setTheme(R.style.NaturaAuthTheme)
-            .setLogo(R.drawable.ic_logo_natura_orange)
-            .setIsSmartLockEnabled(false)
-            .setProviders(Arrays.asList(
-                    new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build(),
-                    new AuthUI.IdpConfig.Builder(AuthUI.GOOGLE_PROVIDER).build()
-            )).build(), RC_SIGN_IN);
+    public void openSplash() {
+        Intent intent = new Intent(MainActivity.this, SplashActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void setupViewPager(){

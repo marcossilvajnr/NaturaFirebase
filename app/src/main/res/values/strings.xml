@@ -1,6 +1,14 @@
 <resources>
     <string name="app_name">NaturaFirebase</string>
 
+    <!-- Alert Messages -->
+    <string name="alert_title_default">Atenção</string>
+    <string name="alert_button_yes">Sim</string>
+    <string name="alert_button_no">Não</string>
+    <string name="alert_message_error_default">Ocorreu um erro, tente novamente mais tarde</string>
+    <string name="alert_message_error_no_connection">Verifique sua conexão de internet</string>
+    <string name="alert_message_login_backbutton">É necessário fazer login para usar todas as funcionalidades do app, gostaria de tentar novamente ?</string>
+
     <!-- Menu item description -->
     <string name="menu_main_signout">Logoff</string>
     <string name="menu_photo_register_clear">Limpar</string>
@@ -21,9 +29,10 @@
     <string name="button_text_save" >Confirmar</string>
     <string name="missing_email_address" >Informe um e-mail para continuar</string>
     <string name="required_field">Informe um valor para continuar</string>
+    <string name="progress_dialog_signing_up" translation_description="Dialog text while waiting for server's signup response">Registrando…</string>
     <plurals name="error_weak_password" translation_description="Inline error for weak password">
         <item quantity="one" translation_description="Inline error for weak password">A senha não é suficientemente forte. Use pelo menos %1$d caractere e uma mistura de letras e números</item>
         <item quantity="other" translation_description="Inline error for weak password">A senha não é suficientemente forte. Use pelo menos %1$d caracteres e uma mistura de letras e números</item>
     </plurals>
-    <string name="progress_dialog_signing_up" translation_description="Dialog text while waiting for server's signup response">Registrando…</string>
+
 </resources>

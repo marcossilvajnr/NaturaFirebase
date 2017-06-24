@@ -1,6 +1,7 @@
 package net.natura.naturafirebase.base.view;
 
 import android.content.Context;
+import android.content.DialogInterface;
 
 import net.natura.naturafirebase.base.AppController;
 
@@ -11,5 +12,6 @@ import net.natura.naturafirebase.base.AppController;
 public interface BaseView {
     AppController getAppController();
     Context getContext();
+    void showSimpleYesNoDialog(String title, String message, DialogInterface.OnClickListener positiveOnClickListener, DialogInterface.OnClickListener negativeOnClickListener);
     void showToast(String message, int duration);
 }

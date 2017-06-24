@@ -13,6 +13,6 @@ public interface MainContract {
     }
 
     interface View extends BaseView {
-        void openLogin();
+        void openSplash();
     }
 }
