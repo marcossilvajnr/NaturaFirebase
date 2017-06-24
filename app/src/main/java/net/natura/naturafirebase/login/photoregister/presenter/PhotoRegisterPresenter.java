@@ -11,12 +11,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import net.natura.naturafirebase.base.model.UserDataModel;
 import net.natura.naturafirebase.base.presenter.BasePresenter;
 import net.natura.naturafirebase.login.photoregister.PhotoRegisterContract;
 
@@ -41,7 +48,7 @@ public class PhotoRegisterPresenter extends BasePresenter<PhotoRegisterContract.
     private void initUpload(Bitmap bitmap, String userid, String bucket) {
         if (view != null) {
             FirebaseStorage storage = FirebaseStorage.getInstance();
-            StorageReference storageRef = storage.getReferenceFromUrl("gs://" + bucket);
+            StorageReference storageRef = storage.getReferenceFromUrl("gs://" + bucket + "/users/");
             StorageReference userPhotoRef = storageRef.child(userid + ".jpg");
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -65,29 +72,8 @@ public class PhotoRegisterPresenter extends BasePresenter<PhotoRegisterContract.
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Uri downloadUrl = taskSnapshot.getDownloadUrl();
-
-                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                            .setPhotoUri(downloadUrl)
-                            .build();
-
-                    FirebaseAuth.getInstance().getCurrentUser().updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    if (view != null) {
-                                        view.showSuccessUpload();
-                                    }
-                                }
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                if (view != null) {
-                                    view.showErrorUpload();
-                                }
-                            }
-                        });
+                    updateUserData(downloadUrl.toString());
+                    view.showSuccessUpload();
                 }
             }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -97,6 +83,26 @@ public class PhotoRegisterPresenter extends BasePresenter<PhotoRegisterContract.
                         view.showProgressUpload(progress.intValue());
                     }
                 }
+            });
+        }
+    }
+
+    private void updateUserData(final String userPhotoUrl) {
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference databaseReference = database.getReference("users").child(firebaseUser.getUid());
+
+        if (databaseReference != null) {
+            databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    UserDataModel userDataModel = dataSnapshot.getValue(UserDataModel.class);
+                    userDataModel.setUserPhotoUrl(userPhotoUrl);
+                    databaseReference.setValue(userDataModel);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {}
             });
         }
     }
