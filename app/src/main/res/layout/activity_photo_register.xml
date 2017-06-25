@@ -19,7 +19,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:textColor="@android:color/white"
-                android:text="Foto de Perfil"/>
+                android:text="@string/title_photo_register"/>
 
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>

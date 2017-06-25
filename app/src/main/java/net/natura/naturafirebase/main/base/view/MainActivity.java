@@ -25,9 +25,7 @@ import net.natura.naturafirebase.login.splash.view.SplashActivity;
 import net.natura.naturafirebase.main.base.MainContract;
 import net.natura.naturafirebase.main.base.presenter.MainPresenter;
 import net.natura.naturafirebase.main.chat.view.ChatFragment;
-import net.natura.naturafirebase.main.notifications.view.NotificationsFragment;
-
-import java.util.Arrays;
+import net.natura.naturafirebase.main.notifications.list.view.NotificationsFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">NaturaFirebase</string>
 
+    <!-- Toolbar Title -->
+    <string name="title_notifications_create">Nova Notificação</string>
+    <string name="title_photo_register">Foto de Perfil</string>
+
     <!-- Alert Messages -->
     <string name="alert_title_default">Atenção</string>
     <string name="alert_button_yes">Sim</string>

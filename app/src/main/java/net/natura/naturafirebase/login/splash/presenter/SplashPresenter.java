@@ -27,40 +27,44 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
     public void verifySignin(FirebaseUser firebaseUser) {
         if (view != null) {
             if (firebaseUser != null) {
-                final Uri photoUrl = firebaseUser.getPhotoUrl();
-
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 final DatabaseReference databaseReference = database.getReference("users").child(firebaseUser.getUid());
+                final Uri photoUrl = firebaseUser.getPhotoUrl();
 
                 if (databaseReference != null) {
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            UserDataModel userDataModel = dataSnapshot.getValue(UserDataModel.class);
+                            final UserDataModel userDataModel = dataSnapshot.getValue(UserDataModel.class);
 
                             if (userDataModel != null) {
                                 userDataModel.setDeviceToken(FirebaseInstanceId.getInstance().getToken());
-                                databaseReference.setValue(userDataModel);
+                                if (userDataModel.getUserPhotoUrl() == null) {
+                                    userDataModel.setUserPhotoUrl(photoUrl == null ? "" : photoUrl.toString());
+                                }
 
-                                if (userDataModel.getUserPhotoUrl() != null && !userDataModel.getUserPhotoUrl().isEmpty()) {
-                                    view.openMain();
-                                } else {
-                                    if (photoUrl != null) {
-                                        userDataModel.setUserPhotoUrl(photoUrl.toString());
-                                        databaseReference.setValue(userDataModel).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                            @Override
-                                            public void onSuccess(Void aVoid) {
+                                databaseReference.setValue(userDataModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                    @Override
+                                    public void onSuccess(Void aVoid) {
+                                        if (view != null) {
+                                            if (userDataModel.getUserPhotoUrl() != null && !userDataModel.getUserPhotoUrl().isEmpty()) {
                                                 view.openMain();
-                                            }
-                                        }).addOnFailureListener(new OnFailureListener() {
-                                            @Override
-                                            public void onFailure(@NonNull Exception e) {
+                                            } else {
                                                 view.openPhotoRegister();
                                             }
-                                        });
-                                    } else {
-                                        view.openPhotoRegister();
+                                        }
                                     }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        if (view != null) {
+                                            view.openMain();
+                                        }
+                                    }
+                                });
+                            } else {
+                                if (view != null) {
+                                    view.openLogin();
                                 }
                             }
                         }
