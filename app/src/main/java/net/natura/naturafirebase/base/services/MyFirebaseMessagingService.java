@@ -35,6 +35,10 @@ import java.net.URL;
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
     private static final String DEFAULT_TITLE = "NaturaFirebase";
 
+    public MyFirebaseMessagingService() {
+        super();
+    }
+    
     @Override
     public void onMessageReceived(final RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
