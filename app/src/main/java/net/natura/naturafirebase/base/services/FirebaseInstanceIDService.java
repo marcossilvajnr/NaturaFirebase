@@ -1,5 +1,7 @@
 package net.natura.naturafirebase.base.services;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -19,15 +21,6 @@ public class FirebaseInstanceIDService extends FirebaseInstanceIdService {
     public void onTokenRefresh() {
         super.onTokenRefresh();
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
-
-        if (refreshedToken != null && !refreshedToken.isEmpty()) {
-            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            final DatabaseReference databaseReference = database.getReference("users").child(firebaseUser.getUid());
-
-            if (databaseReference != null && firebaseUser != null) {
-                databaseReference.setValue(FIELD_TOKEN, refreshedToken);
-            }
-        }
+        Log.d("refreshedToken", refreshedToken);
     }
 }

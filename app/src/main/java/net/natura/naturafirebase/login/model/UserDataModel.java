@@ -1,4 +1,4 @@
-package net.natura.naturafirebase.base.model;
+package net.natura.naturafirebase.login.model;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 

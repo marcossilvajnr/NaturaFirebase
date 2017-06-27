@@ -25,7 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
-import net.natura.naturafirebase.main.base.view.MainActivity;
+import net.natura.naturafirebase.notifications.list.NotificationsActivity;
 import net.natura.naturafirebase.login.photoregister.PhotoRegisterContract;
 import net.natura.naturafirebase.login.photoregister.presenter.PhotoRegisterPresenter;
 
@@ -205,7 +205,7 @@ public class PhotoRegisterActivity extends BaseActivity implements PhotoRegister
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                openActivity(MainActivity.newInstance(PhotoRegisterActivity.this));
+                openActivity(NotificationsActivity.newInstance(PhotoRegisterActivity.this));
             }
         });
         builder.show();

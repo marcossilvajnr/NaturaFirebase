@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import net.natura.naturafirebase.R;
 import net.natura.naturafirebase.base.view.BaseActivity;
-import net.natura.naturafirebase.main.base.view.MainActivity;
+import net.natura.naturafirebase.notifications.list.NotificationsActivity;
 import net.natura.naturafirebase.login.photoregister.view.PhotoRegisterActivity;
 import net.natura.naturafirebase.login.splash.SplashContract;
 import net.natura.naturafirebase.login.splash.presenter.SplashPresenter;
@@ -125,7 +125,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     @Override
     public void openMain() {
         hideLoading();
-        openActivity(MainActivity.newInstance(SplashActivity.this));
+        openActivity(NotificationsActivity.newInstance(SplashActivity.this));
     }
 
     @Override

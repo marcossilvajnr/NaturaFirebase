@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import net.natura.naturafirebase.base.model.UserDataModel;
+import net.natura.naturafirebase.login.model.UserDataModel;
 import net.natura.naturafirebase.base.presenter.BasePresenter;
 import net.natura.naturafirebase.login.splash.SplashContract;
 
