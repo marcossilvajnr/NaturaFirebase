@@ -98,6 +98,11 @@ public class PhotoRegisterPresenter extends BasePresenter<PhotoRegisterContract.
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     UserDataModel userDataModel = dataSnapshot.getValue(UserDataModel.class);
                     userDataModel.setUserPhotoUrl(userPhotoUrl);
+
+                    if (view != null) {
+                        view.getAppController().setUserDataModel(userDataModel);
+                    }
+
                     databaseReference.setValue(userDataModel);
                 }
 

@@ -1,5 +1,6 @@
 package net.natura.naturafirebase.login.splash.view;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +35,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     private static final int DELAY_SPLASH_IN_SECONDS = 3;
     private static final int RC_SIGN_IN = 222;
     private SplashPresenter splashPresenter;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +93,8 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
 
     @Override
     public void openLogin() {
+        hideLoading();
+
         startActivityForResult(AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setTheme(R.style.NaturaAuthTheme)
@@ -103,12 +107,30 @@ public class SplashActivity extends BaseActivity implements SplashContract.View 
     }
 
     @Override
+    public void showLoading() {
+        progressDialog = new ProgressDialog(SplashActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Carregando...");
+        progressDialog.show();
+    }
+
+    @Override
+    public void hideLoading() {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+    }
+
+    @Override
     public void openMain() {
+        hideLoading();
         openActivity(MainActivity.newInstance(SplashActivity.this));
     }
 
     @Override
     public void openPhotoRegister() {
+        hideLoading();
         openActivity(PhotoRegisterActivity.newInstance(SplashActivity.this));
     }
 

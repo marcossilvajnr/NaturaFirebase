@@ -15,6 +15,8 @@ public interface SplashContract {
     }
 
     interface View extends BaseView {
+        void showLoading();
+        void hideLoading();
         void openLogin();
         void openMain();
         void openPhotoRegister();

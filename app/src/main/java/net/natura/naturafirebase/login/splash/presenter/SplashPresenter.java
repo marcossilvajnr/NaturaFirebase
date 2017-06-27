@@ -26,6 +26,8 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
     @Override
     public void verifySignin(FirebaseUser firebaseUser) {
         if (view != null) {
+            view.showLoading();
+
             if (firebaseUser != null) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 final DatabaseReference databaseReference = database.getReference("users").child(firebaseUser.getUid());
@@ -48,6 +50,7 @@ public class SplashPresenter extends BasePresenter<SplashContract.View> implemen
                                     public void onSuccess(Void aVoid) {
                                         if (view != null) {
                                             if (userDataModel.getUserPhotoUrl() != null && !userDataModel.getUserPhotoUrl().isEmpty()) {
+                                                view.getAppController().setUserDataModel(userDataModel);
                                                 view.openMain();
                                             } else {
                                                 view.openPhotoRegister();
